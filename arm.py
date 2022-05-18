@@ -1,5 +1,6 @@
 from Core.model import Model, Joint
 from Core.vrep import simxPauseCommunication
+from sympy import *
 
 
 class Arm(Model):
@@ -19,21 +20,21 @@ class Arm(Model):
         mat = 0
         return mat
 
-    def fk(self, joint_angles):
+    def _fk(self, joint_angles):
         end_effector_pos = 0
         return end_effector_pos
 
-    def ik(self, goal):
+    def _ik(self, goal):
         joint_angles = 0
         return joint_angles
 
     def moveJ(self, pos):
         return
 
-    def moveL():
+    def moveL(self, pos):
         return
 
-    def moveC():
+    def moveC(self, pos):
         return
 
     def moveAbsJ(self, joint_angles: list):
