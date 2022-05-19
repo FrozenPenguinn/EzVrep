@@ -15,12 +15,28 @@ class Arm(Model):
         self.joint5 = Joint(client, "joint5")
         self.joint6 = Joint(client, "joint6")
 
-    # computed too many times, can the matrix be stored
-    def Tmat(theta, alpha, d, l):
-        mat = 0
-        return mat
+    def Tmat(self, theta, alpha, d, l):
+        """
+        Brief description: generate a symbolic representation of transformation matrix based on DH parameters
+        Parameters:
+            theta:
+            alpha:
+            d:
+            l:
+        Return values: a symbolic representation of transformation matrix
+        update log: FrozenPenguinn on 2022/05/19
+        """
+
+        return tmat
 
     def _fk(self, joint_angles):
+        """
+        Brief description: move robot in joint-space directly
+        Parameters:
+            joint_angles: a list of six desired joint angles to move to
+        Return values: None
+        update log: FrozenPenguinn on 2022/05/18
+        """
         end_effector_pos = 0
         return end_effector_pos
 
