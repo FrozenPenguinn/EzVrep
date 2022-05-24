@@ -1,35 +1,32 @@
 from Core.model import Model, Joint
 from Core.vrep import simxPauseCommunication
-from sympy import *
+import yaml
+import client
+import numpy as np
 
+# ================ Step 1 ====================== #
 
 class Arm(Model):
-    def __init__(self, client, object_name, id=""):
+    def __init__(self, client: int, object_name, id, dh_path=''):
         self.objectName = object_name + id  # to differentiate between robots of the same type
         super().__init__(client, self.objectName)
-        # control units
+        # joint units
         self.joint1 = Joint(client, "joint1")
         self.joint2 = Joint(client, "joint2")
         self.joint3 = Joint(client, "joint3")
         self.joint4 = Joint(client, "joint4")
         self.joint5 = Joint(client, "joint5")
         self.joint6 = Joint(client, "joint6")
+        # dh table
+        self.dhdict = yaml.safe_load(dh_path)
+        # save forward kinematics matrix to avoid repeated calculations
+        self.fkmat = fkInit(self.dhdict)
 
-    def Tmat(self, theta, alpha, d, l):
-        """
-        Brief description: generate a symbolic representation of transformation matrix based on DH parameters
-        Parameters:
-            theta:
-            alpha:
-            d:
-            l:
-        Return values: a symbolic representation of transformation matrix
-        update log: FrozenPenguinn on 2022/05/19
-        """
+    def _fkInit(self, dhdict):
+        Tmat = _getTmat()
+        return 0
 
-        return tmat
-
-    def _fk(self, joint_angles):
+    def fk(self, joint_angles):
         """
         Brief description: move robot in joint-space directly
         Parameters:
@@ -40,7 +37,7 @@ class Arm(Model):
         end_effector_pos = 0
         return end_effector_pos
 
-    def _ik(self, goal):
+    def ik(self, goal):
         joint_angles = 0
         return joint_angles
 
