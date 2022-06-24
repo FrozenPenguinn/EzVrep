@@ -9,6 +9,10 @@ class Model(object):
         self.objectHandle = client.bind(self.objectName)
         return
 
+    def place(self, position, orientation):
+        return
+
+
 class Joint(Model):
 
     def set_velocity(self, speed):

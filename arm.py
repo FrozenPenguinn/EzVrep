@@ -4,7 +4,6 @@ import yaml
 import client
 import numpy as np
 
-# ================ Step 1 ====================== #
 
 class Arm(Model):
     def __init__(self, client: int, object_name, id, dh_path=''):
@@ -41,16 +40,16 @@ class Arm(Model):
         joint_angles = 0
         return joint_angles
 
-    def moveJ(self, pos):
+    def moveJ(self, dest):
         return
 
-    def moveL(self, pos):
+    def moveL(self, dest):
         return
 
-    def moveC(self, pos):
+    def moveC(self, dest):
         return
 
-    def moveAbsJ(self, joint_angles: list):
+    def moveAbsJ(self, dest_angles: list):
         """
         Brief description: move robot in joint-space directly
         Parameters:
@@ -59,12 +58,12 @@ class Arm(Model):
         update log: FrozenPenguinn on 2022/05/18
         """
         simxPauseCommunication(self.client.ID, True)
-        self.joint1.set_angle(joint_angles[0])
-        self.joint2.set_angle(joint_angles[1])
-        self.joint3.set_angle(joint_angles[2])
-        self.joint4.set_angle(joint_angles[3])
-        self.joint5.set_angle(joint_angles[4])
-        self.joint6.set_angle(joint_angles[5])
+        self.joint1.set_angle(dest_angles[0])
+        self.joint2.set_angle(dest_angles[1])
+        self.joint3.set_angle(dest_angles[2])
+        self.joint4.set_angle(dest_angles[3])
+        self.joint5.set_angle(dest_angles[4])
+        self.joint6.set_angle(dest_angles[5])
         simxPauseCommunication(self.client.ID, False)
         return
 
